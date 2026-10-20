@@ -1,0 +1,4 @@
+{
+  "bucket": "game-catalog-dedup",
+  "key": "raw/meta_Video_Games.jsonl"
+}

@@ -1,0 +1,37 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "InvokeModels",
+            "Effect": "Allow",
+            "Action": "bedrock:InvokeModel",
+            "Resource": [
+                "arn:aws:bedrock:*::foundation-model/amazon.nova-micro-v1:0",
+                "arn:aws:bedrock:*::foundation-model/amazon.nova-lite-v1:0",
+                "arn:aws:bedrock:us-east-1:<account_number>:inference-profile/us.amazon.nova-micro-v1:0",
+                "arn:aws:bedrock:us-east-1:<account_number>:inference-profile/us.amazon.nova-lite-v1:0",
+                "arn:aws:bedrock:us-east-1::foundation-model/amazon.titan-embed-text-v2:0"
+            ]
+        },
+        {
+            "Sid": "SearchAndRegisterVectors",
+            "Effect": "Allow",
+            "Action": [
+                "s3vectors:QueryVectors",
+                "s3vectors:GetVectors",
+                "s3vectors:PutVectors"
+            ],
+            "Resource": "arn:aws:s3vectors:us-east-1:<account_number>:bucket/game-catalog-vectors/*"
+        },
+        {
+            "Sid": "ReadWriteCatalog",
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetItem",
+                "dynamodb:PutItem"
+            ],
+            "Resource": "arn:aws:dynamodb:us-east-1:<account_number>:table/game-catalog-products"
+        }
+    ]
+}

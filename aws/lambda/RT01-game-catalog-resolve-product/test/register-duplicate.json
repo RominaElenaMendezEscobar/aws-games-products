@@ -1,0 +1,9 @@
+{
+  "product": {
+    "parent_asin": "TEST-0001",
+    "title": "EA Sports FIFA 14 - PS3 Game Disc (Pre-owned)",
+    "store": "GameStop",
+    "categories": ["Video Games", "Legacy Systems", "PlayStation Systems", "PlayStation 3", "Games"],
+    "details": {"Manufacturer": "Electronic Arts"}
+  }
+}

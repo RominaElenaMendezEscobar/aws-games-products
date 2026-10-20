@@ -1,0 +1,6 @@
+{
+  "bucket": "game-catalog-dedup",
+  "run_name": "test-sample",
+  "title_contains": ["\\bfifa\\b", "\\bzelda\\b", "\\bcall of duty\\b"],
+  "limit": 20
+}

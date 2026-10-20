@@ -1,0 +1,6 @@
+{
+  "bucket": "game-catalog-dedup",
+  "run_name": "clusters-top20-v8",
+  "pairs_key": "pairs/pairs-top20-v8/pairs.jsonl",
+  "attribute_keys": ["attributes/top20-v8/attributes_games.jsonl"]
+}

@@ -1,0 +1,23 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ReadModelOutputAndMvp",
+            "Effect": "Allow",
+            "Action": "s3:GetObject",
+            "Resource": [
+                "arn:aws:s3:::game-catalog-dedup/bedrock-output/*",
+                "arn:aws:s3:::game-catalog-dedup/mvp/*"
+            ]
+        },
+        {
+            "Sid": "WriteAttributesAndReports",
+            "Effect": "Allow",
+            "Action": "s3:PutObject",
+            "Resource": [
+                "arn:aws:s3:::game-catalog-dedup/attributes/*",
+                "arn:aws:s3:::game-catalog-dedup/reports/*"
+            ]
+        }
+    ]
+}

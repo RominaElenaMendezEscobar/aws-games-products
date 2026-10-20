@@ -1,0 +1,189 @@
+{
+  "Comment": "Game catalog deduplication pipeline: extraction -> embeddings -> pairs -> clusters",
+  "StartAt": "PrepareRequests",
+  "States": {
+    "PrepareRequests": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "game-catalog-prepare-batch",
+        "Payload": {
+          "bucket.$": "$.bucket",
+          "run_name.$": "$.run_name",
+          "title_contains.$": "$.title_contains"
+        }
+      },
+      "ResultSelector": {
+        "output.$": "$.Payload"
+      },
+      "ResultPath": "$.results.prepare",
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "Next": "ExtractAttributes"
+    },
+    "ExtractAttributes": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "game-catalog-extract-ondemand-access",
+        "Payload": {
+          "bucket.$": "$.bucket",
+          "input_key.$": "States.Format('bedrock-input/{}/requests.jsonl', $.run_name)",
+          "model_id.$": "$.model_id"
+        }
+      },
+      "ResultSelector": {
+        "output.$": "$.Payload"
+      },
+      "ResultPath": "$.results.extract",
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "Next": "ParseResults"
+    },
+    "ParseResults": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "game-catalog-parse-results",
+        "Payload": {
+          "bucket.$": "$.bucket",
+          "run_name.$": "$.run_name",
+          "model_id.$": "$.model_id",
+          "prompt_version.$": "$.prompt_version"
+        }
+      },
+      "ResultSelector": {
+        "output.$": "$.Payload"
+      },
+      "ResultPath": "$.results.parse",
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "Next": "CreateEmbeddings"
+    },
+    "CreateEmbeddings": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "game-catalog-embed",
+        "Payload": {
+          "bucket.$": "$.bucket",
+          "run_name.$": "$.run_name",
+          "index_name.$": "$.index_name"
+        }
+      },
+      "ResultSelector": {
+        "output.$": "$.Payload"
+      },
+      "ResultPath": "$.results.embed",
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "Next": "DecidePairs"
+    },
+    "DecidePairs": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "game-catalog-decide-pairs",
+        "Payload": {
+          "bucket.$": "$.bucket",
+          "run_name.$": "$.pairs_run",
+          "index_name.$": "$.index_name",
+          "decision_model_id.$": "$.decision_model_id"
+        }
+      },
+      "ResultSelector": {
+        "output.$": "$.Payload"
+      },
+      "ResultPath": "$.results.pairs",
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "Next": "BuildClusters"
+    },
+    "BuildClusters": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "game-catalog-build-clusters",
+        "Payload": {
+          "bucket.$": "$.bucket",
+          "run_name.$": "$.clusters_run",
+          "pairs_key.$": "States.Format('pairs/{}/pairs.jsonl', $.pairs_run)",
+          "attribute_keys.$": "$.attribute_keys"
+        }
+      },
+      "ResultSelector": {
+        "output.$": "$.Payload"
+      },
+      "ResultPath": "$.results.clusters",
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "End": true
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ReadBedrockInput",
+            "Effect": "Allow",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::game-catalog-dedup/bedrock-input/*"
+        },
+        {
+            "Sid": "WriteBedrockOutput",
+            "Effect": "Allow",
+            "Action": "s3:PutObject",
+            "Resource": "arn:aws:s3:::game-catalog-dedup/bedrock-output/*"
+        },
+        {
+            "Sid": "InvokeNovaMicro",
+            "Effect": "Allow",
+            "Action": "bedrock:InvokeModel",
+            "Resource": [
+                "arn:aws:bedrock:*::foundation-model/amazon.nova-micro-v1:0",
+                "arn:aws:bedrock:us-east-1:<account_number>:inference-profile/us.amazon.nova-micro-v1:0"
+            ]
+        }
+    ]
+}

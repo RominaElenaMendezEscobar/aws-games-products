@@ -1,0 +1,5 @@
+{
+  "bucket": "game-catalog-dedup",
+  "run_name": "test-sample",
+  "prompt_version": "v8"
+}

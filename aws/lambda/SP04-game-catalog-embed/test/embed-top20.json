@@ -1,0 +1,5 @@
+{
+  "bucket": "game-catalog-dedup",
+  "run_name": "top20-v8",
+  "index_name": "games-v2"
+}

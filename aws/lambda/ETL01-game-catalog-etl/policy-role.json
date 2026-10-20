@@ -1,0 +1,21 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ReadRaw",
+            "Effect": "Allow",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::game-catalog-dedup/raw/*"
+        },
+        {
+            "Sid": "WriteOutputs",
+            "Effect": "Allow",
+            "Action": "s3:PutObject",
+            "Resource": [
+                "arn:aws:s3:::game-catalog-dedup/clean/*",
+                "arn:aws:s3:::game-catalog-dedup/mvp/*",
+                "arn:aws:s3:::game-catalog-dedup/reports/*"
+            ]
+        }
+    ]
+}

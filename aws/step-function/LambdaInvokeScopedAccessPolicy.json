@@ -1,0 +1,33 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "lambda:InvokeFunction"
+            ],
+            "Resource": [
+                "arn:aws:lambda:us-east-1:<account_number>:function:game-catalog-extract-ondemand-access:*",
+                "arn:aws:lambda:us-east-1:<account_number>:function:game-catalog-build-clusters:*",
+                "arn:aws:lambda:us-east-1:<account_number>:function:game-catalog-decide-pairs:*",
+                "arn:aws:lambda:us-east-1:<account_number>:function:game-catalog-prepare-batch:*",
+                "arn:aws:lambda:us-east-1:<account_number>:function:game-catalog-embed:*",
+                "arn:aws:lambda:us-east-1:<account_number>:function:game-catalog-parse-results:*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "lambda:InvokeFunction"
+            ],
+            "Resource": [
+                "arn:aws:lambda:us-east-1:<account_number>:function:game-catalog-extract-ondemand-access",
+                "arn:aws:lambda:us-east-1:<account_number>:function:game-catalog-build-clusters",
+                "arn:aws:lambda:us-east-1:<account_number>:function:game-catalog-decide-pairs",
+                "arn:aws:lambda:us-east-1:<account_number>:function:game-catalog-prepare-batch",
+                "arn:aws:lambda:us-east-1:<account_number>:function:game-catalog-embed",
+                "arn:aws:lambda:us-east-1:<account_number>:function:game-catalog-parse-results"
+            ]
+        }
+    ]
+}

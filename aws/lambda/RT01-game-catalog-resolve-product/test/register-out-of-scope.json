@@ -1,0 +1,9 @@
+{
+  "product": {
+    "parent_asin": "TEST-0002",
+    "title": "ThinkGeek Legend of Zelda Classic Nintendo NES Sword with Sound!",
+    "store": "ThinkGeek",
+    "categories": ["Video Games", "Legacy Systems", "Nintendo Systems", "NES", "Games"],
+    "details": {"Manufacturer": "ThinkGeek"}
+  }
+}

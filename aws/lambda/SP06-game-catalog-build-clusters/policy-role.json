@@ -1,0 +1,32 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ReadPairsAndAttributes",
+            "Effect": "Allow",
+            "Action": "s3:GetObject",
+            "Resource": [
+                "arn:aws:s3:::game-catalog-dedup/pairs/*",
+                "arn:aws:s3:::game-catalog-dedup/attributes/*"
+            ]
+        },
+        {
+            "Sid": "WriteClustersAndReports",
+            "Effect": "Allow",
+            "Action": "s3:PutObject",
+            "Resource": [
+                "arn:aws:s3:::game-catalog-dedup/clusters/*",
+                "arn:aws:s3:::game-catalog-dedup/reports/*"
+            ]
+        },
+        {
+            "Sid": "WriteProductsTable",
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem"
+            ],
+            "Resource": "arn:aws:dynamodb:us-east-1:<account_number>:table/game-catalog-products"
+        }
+    ]
+}

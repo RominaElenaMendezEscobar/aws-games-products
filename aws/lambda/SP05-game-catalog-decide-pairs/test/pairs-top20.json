@@ -1,0 +1,6 @@
+{
+  "bucket": "game-catalog-dedup",
+  "run_name": "pairs-top20-v8",
+  "index_name": "games-v2",
+  "decision_model_id": "us.amazon.nova-lite-v1:0"
+}

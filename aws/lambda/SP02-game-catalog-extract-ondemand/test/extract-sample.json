@@ -1,0 +1,5 @@
+{
+  "bucket": "game-catalog-dedup",
+  "input_key": "bedrock-input/test-sample/requests.jsonl",
+  "model_id": "us.amazon.nova-micro-v1:0"
+}
