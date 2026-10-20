@@ -6,6 +6,8 @@
 
 **Is it the same product?** A serverless pipeline that detects duplicate and variant listings in an e-commerce catalog, combining a language model, vector search and simple rules, with cost as a design constraint.
 
+![img](img/game_preview.png)
+
 The use case is a video game catalog: the same game can be sold for different platforms, in different editions and formats, as a budget reprint or refurbished, and its title can be written in many ways ("GTA: Vice City" vs "Grand Theft Auto: Vice City", "Black Ops II" vs "Black Ops 2"). Some of those listings are the same product; others look almost identical but are not.
 
 > 📝 This repository accompanies the article *[article title and link]*.
