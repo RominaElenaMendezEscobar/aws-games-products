@@ -2,7 +2,7 @@
 
 ---
 
-# 🎮 Product Deduplication with Generative AI on AWS
+# 🎮 Identical or Similar? AI-Powered Product Matching with Amazon Bedrock and S3 Vectors
 
 **Is it the same product?** A serverless pipeline that detects duplicate and variant listings in an e-commerce catalog, combining a language model, vector search and simple rules, with cost as a design constraint.
 
