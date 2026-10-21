@@ -273,6 +273,18 @@ The examples in the prompt deliberately use franchises **outside** the evaluated
 
 ---
 
+## ⚠️ Disclaimer
+
+This is an exploratory MVP and is not intended for production use as is.
+
+- The results come from a single run on a subset of 3,740 products; more data samples are needed to validate them.
+- The prompt was tuned over several test rounds on that same subset, so it may behave differently on other catalogs.
+- The rules work on the attributes extracted by the model: extraction errors propagate to the search and the decision.
+- Thresholds, rules and business criteria were set empirically, and the models have not been validated against a labelled reference set.
+
+
+---
+
 ## ⚠️ Limitations
 
 - Unofficial reproductions and bundles with accessories can be grouped with the original game.
