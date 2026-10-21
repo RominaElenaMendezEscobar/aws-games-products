@@ -10,7 +10,7 @@
 
 The use case is a video game catalog: the same game can be sold for different platforms, in different editions and formats, as a budget reprint or refurbished, and its title can be written in many ways ("GTA: Vice City" vs "Grand Theft Auto: Vice City", "Black Ops II" vs "Black Ops 2"). Some of those listings are the same product; others look almost identical but are not.
 
-> 📝 This repository accompanies the article *[article title and link]*.
+> 📝 This repository accompanies the article [Identical or Similar? AI-Powered Product Matching with Amazon Bedrock and S3 Vectors](https://dev.to/aws-builders/identical-or-similar-ai-powered-product-matching-with-amazon-bedrock-and-s3-vectors-3pm)].
 
 ---
 
