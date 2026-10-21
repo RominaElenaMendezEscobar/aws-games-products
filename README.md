@@ -23,8 +23,8 @@ Processed with the final version of the pipeline (prompt v8) on the 20 best-sell
 | Products processed | 3,740 |
 | Not actually games (bundles, DLC, accessories, merchandise) | 825 (22%) |
 | Games | 2,915 |
-| **Real products** (`canonical_id`) | **2,125** |
-| **Duplicate listings** | **790 (27.1% of games)** |
+| **Products identified** (`canonical_id`) | **2,125** |
+| **Listings flagged as duplicates** | **790 (27.1% of games)** |
 | Game families (same game, any platform or edition) | 972 |
 | Candidate pairs decided by rules | 97.7% |
 | Candidate pairs decided by Nova Lite (gray zone) | 2.3% |
@@ -55,7 +55,6 @@ The solution has three parts:
 | 🟨 Compute AI | Amazon Bedrock – Nova Lite | Decisions in the gray zone |
 | 🟪 Pipeline | AWS Lambda | Each processing step |
 | 🟪 Pipeline | AWS Step Functions | Orchestration of the batch pipeline |
-| 🟪 Pipeline | Amazon EventBridge | Optional trigger on new uploads (not configured in the MVP) |
 | 🟥 Security | AWS IAM, AWS KMS | Least-privilege roles, encryption at rest |
 | 🟦 Logs | Amazon CloudWatch | Logs and metrics |
 
